@@ -119,12 +119,14 @@ public class Facade implements VisitableItem {
         }
     }
 
-    public int productLevelSelection() {
+    void showMenu() throws Exception {
+        thePerson.getListOfProductsAdded();
+    }
 
+    public int productLevelSelection() {
         System.out.println("Enter the type of Product:");
         System.out.println("0 for Meat Product Menu");
         System.out.println("1 for Produce Product Menu");
-
         try {
             int index = Integer.parseInt(bufferedReader.readLine());
             return index;
