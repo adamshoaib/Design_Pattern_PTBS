@@ -26,10 +26,8 @@ public class Facade implements VisitableItem {
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     public boolean login(String userName, String password, Integer type) throws FileNotFoundException {
         System.out.println("**** Inside Facade Login Function ****");
-
         try {
-            System.out.println("Password" + dh.fetchPassword(userName).equals(password));
-            if(dh.fetchPassword(userName).equals(password)) {
+            if(dh.fetchPassword(userName, type).equals(password)) {
                 user = new UserInfoItem();
                 this.user.setName(userName);
                 if(type == 0) {
@@ -40,8 +38,10 @@ public class Facade implements VisitableItem {
                 thePerson = createUser(this.user);
                 attachProductToUser(thePerson);
                 this.theSelectedProduct = selectProduct();
-                this.nProductCategory = productLevelSelection();
-                this.optionSelection(this.user);
+                this.nProductCategory = typeOfProductSelection();
+                this.userOptionSelection(this.user);
+            } else {
+                System.exit(1);
             }
         }
         catch(Exception ex) {
@@ -55,27 +55,28 @@ public class Facade implements VisitableItem {
         System.out.println("*** Creating New User in Facade ***");
         return dh.assignPersonObj(userInfo.name);
     }
-    void optionSelection(UserInfoItem user) throws Exception {
+    void userOptionSelection(UserInfoItem user) throws Exception {
         System.out.println("Select :");
         System.out.println("1. Create Product menu");
         System.out.println("2. Display Product menu");
-        System.out.println("3. Remind");
+        System.out.println("3. Remind Upcoming Overdue ");
         System.out.println("4. Exit");
-
         try {
             int userIp = Integer.parseInt(bufferedReader.readLine());
             switch(userIp) {
                 case 1: {
                     productOperation();
-                    optionSelection(user);
+                    userOptionSelection(user);
                     break;
                 }
                 case 2: {
                     showMenu();
+                    userOptionSelection(user);
                     break;
                 }
                 case 3: {
                     remind();
+                    userOptionSelection(user);
                     break;
                 }
                 default : {
@@ -118,7 +119,6 @@ public class Facade implements VisitableItem {
                 ((Product) product).addTrading(new Trading(new Date()));
             }
         } catch(Exception exception) {
-            System.out.println("Exception :" + exception);
             ArrayList<Product> pl = new ArrayList<Product>();
             this.theProductList.addAll(pl);
         }
@@ -128,17 +128,14 @@ public class Facade implements VisitableItem {
     public void submitOffering() {}
     public void attachProductToUser() {}
     public Product selectProduct() {
-        System.out.println("**** Iterator pattern ****");
         System.out.println("**** Product Iterator : Iterator Pattern ****");
-        System.out.println("currentUser.getAddedProducts() :" + thePerson.getListOfProductsAdded());
-
         ProductIterator itr = (ProductIterator) thePerson.getListOfProductsAdded().iterator();
         int index = 0;
         while(itr.hasNext()) {
             System.out.println("Index : " + index + ": Id :" + itr.next().id);
             index++;
         }
-        System.out.println("Please Enter the product :");
+        System.out.println("Enter the product index :");
         try {
             index = Integer.parseInt(bufferedReader.readLine());
         } catch (IOException ioe) {
@@ -153,12 +150,12 @@ public class Facade implements VisitableItem {
         }
     }
     void showMenu() throws Exception {
-       ClassProductList cp = thePerson.getListOfProductsAdded();
+       thePerson.showMenu();
     }
-    public int productLevelSelection() {
-        System.out.println("Enter the type of Product:");
-        System.out.println("0 for Meat Product Menu");
-        System.out.println("1 for Produce Product Menu");
+    public int typeOfProductSelection() {
+        System.out.println("Enter the type of Product Menu:");
+        System.out.println("0 ---> Meat Product");
+        System.out.println("1 ---> Produce Product");
         try {
             int index = Integer.parseInt(bufferedReader.readLine());
             return index;

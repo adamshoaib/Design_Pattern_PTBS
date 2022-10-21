@@ -12,7 +12,7 @@ public class main {
         String password = sc.nextLine();
         System.out.println("Enter Type of User 0: Buyer , 1: Seller");
         Integer type = sc.nextInt();
-        if(type == 1 || type == 2) {
+        if(type == 0 || type == 1) {
             fPattern.login(userName, password, type);
         } else {
             System.out.println("Invalid Type");

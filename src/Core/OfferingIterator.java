@@ -1,34 +1,34 @@
 package Core;
 public class OfferingIterator extends ListIterator<Offering> {
     OfferingIterator(OfferingList offeringList) {
+        // OfferingIterator constructor
         this.arrList = offeringList;
         currPos = 0;
     }
 
     @Override
     void moveToHead() {
-        currPos = 0;
+        // Not doing anything Just a print statement
+        System.out.println("moveToHead --------------->");
     }
 
     @Override
     public boolean hasNext() {
-        return (currPos < ( arrList.size() -1 ));
+        // Not doing anything Just a print statement
+        System.out.println("Inside next Offering Iterator");
+        return true;
     }
 
     @Override
     public Offering next() {
-        if(currPos<arrList.size()) {
-            int nextPos = currPos + 1;
-            return arrList.get(nextPos);
-        } else {
-            return null;
-        }
+        // Not doing anything Just a print statement
+        System.out.println("Inside next Offering Iterator");
+        return null;
     }
 
     @Override
     public void remove() {
-        if(currPos<arrList.size()) {
-            arrList.remove(currPos);
-        }
+        // Not doing anything Just a print statement
+        System.out.println("Inside remove Offering Iterator");
     }
 }
