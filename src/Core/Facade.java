@@ -93,9 +93,6 @@ public class Facade implements VisitableItem {
         List<Product> ls = dh.productsForUsers(person.userName);
         person.addProduct(ls);
     }
-    void menuDisplay() throws Exception {
-        thePerson.showMenu();
-    }
     ClassProductList getAllProducts() {
         return theProductList;
     }
@@ -116,7 +113,7 @@ public class Facade implements VisitableItem {
         try {
             theProductList = new ClassProductList(dh.productInitilization());
             for (Object product : theProductList) {
-                ((Product) product).addTrading(new Trading(new Date()));
+                ((Product) product).addTrading(new Trading());
             }
         } catch(Exception exception) {
             ArrayList<Product> pl = new ArrayList<Product>();

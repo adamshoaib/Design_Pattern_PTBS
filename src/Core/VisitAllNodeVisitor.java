@@ -15,13 +15,7 @@ public class VisitAllNodeVisitor extends NodeVisitor {
    }
 
     @Override
-    public void visit(Product product) {
-        System.out.println("****"+(product.id)+" : Product Visiting .... ****");
-        Iterator<Trading> itr = product.getTradings().iterator();
-        while(itr.hasNext()) {
-            itr.next().accept(this);
-        }
-    }
+    public void visit(Product product) { System.out.println("**** Visit Product Class ****"); }
 
     @Override
     public void visit(Trading trading) {

@@ -2,6 +2,8 @@ package Core;
 
 public class Buyer extends Person{
 
+
+    // Buyer constructor
     public Buyer(String userName) {
         super(userName,0);
     }
