@@ -3,8 +3,6 @@ package Core;
 import java.util.Date;
 
 public class Trading implements VisitableItem{
-
-    // todo : adding deadline
     public Trading(Date endDate) {
         this.endDate = endDate;
     }

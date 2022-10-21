@@ -13,10 +13,11 @@ public abstract class Person {
     private ClassProductList productListAdded;
     abstract void showMenu();
     public void addProduct(List<Product> prodList) {
-        if(productsAdded == null) {
-            productsAdded = new ClassProductList(prodList);
+
+        if(productListAdded == null) {
+            productListAdded = new ClassProductList(prodList);
         } else {
-            productsAdded.addAll(prodList);
+            productListAdded.addAll(prodList);
         }
     }
     public abstract ProductMenu createProductMenu(int type);

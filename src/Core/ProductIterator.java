@@ -20,8 +20,7 @@ public class ProductIterator extends ListIterator<Product> {
     @Override
     public Product next() {
         if(currPos<arrList.size()) {
-            int nextPos = currPos + 1;
-            return arrList.get(nextPos);
+            return arrList.get(++currPos);
         } else {
             return null;
         }
