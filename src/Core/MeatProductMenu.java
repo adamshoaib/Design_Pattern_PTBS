@@ -6,7 +6,7 @@ import java.util.Map;
 public class MeatProductMenu implements ProductMenu{
     @Override
     public void showMenu() {
-        System.out.println("___ MeatProductMenu : Show menu Function ___");
+        System.out.println("___ MeatProductMenu : Show menu Function: Bridge Pattern ___");
         printMenuItems();
     }
 
